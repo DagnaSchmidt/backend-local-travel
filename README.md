@@ -1,11 +1,11 @@
 frontend:
 
-cd client
-npm i
-npm run dev
+cd client </br>
+npm i </br>
+npm run dev </br>
 
 backend:
 
-cd server
-npm i
-npm run dev
+cd server </br>
+npm i </br>
+npm run dev </br>
