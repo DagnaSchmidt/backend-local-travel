@@ -4,27 +4,26 @@ import PlaceIcon from './PlaceIcon';
 type TAmenityType = 'cafe' | 'restaurant' | 'bar';
 
 interface IPlaceItemProps {
-    amenity: TAmenityType,
-    name: string,
-    street: string,
-    housenumber: string,
-    lat: string,
-    lon: string,
-    id: string
+    lat: number,
+    lon: number,
+    id: number,
+    tags: {
+        name: string,
+        amenity: TAmenityType
+        'addr:street': string
+        'addr:housenumber': string
+    }
 };
 
 const PlaceItem = ({
-    amenity,
-    name,
-    street,
-    housenumber,
     lat,
     lon,
-    id
+    id,
+    tags
 }: IPlaceItemProps): ReactElement => {
 
     const distance = 90; // hook here
-    const icon = amenity === 'cafe' ? 'coffee' : amenity === 'bar' ? 'martini' : 'chef-hat';
+    const icon = tags?.amenity === 'cafe' ? 'coffee' : tags?.amenity === 'bar' ? 'martini' : 'chef-hat';
 
     return (
         <div
@@ -39,12 +38,12 @@ const PlaceItem = ({
                     <h6
                         className='font-semibold text-sm text-stone-950'
                     >
-                        {name}
+                        {tags.name}
                     </h6>
                     <p
                         className='text-xs text-stone-500'
                     >
-                        {amenity}
+                        {tags.amenity}
                     </p>
                 </div>
                 <PlaceIcon name={icon} />
@@ -69,7 +68,7 @@ const PlaceItem = ({
                 <h6
                     className='font-regular text-sm text-stone-950'
                 >
-                    {street} {housenumber}
+                    {tags['addr:street']} {tags['addr:housenumber']}
                 </h6>
             </div>
         </div>
