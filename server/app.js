@@ -5,6 +5,7 @@ import { searchRouter } from './controllers/search.js';
 import { weatherRouter } from './controllers/weather.js';
 import { trafficRouter } from './controllers/traffic.js';
 import { transportRouter } from './controllers/transport.js';
+import { placesRouter } from './controllers/places.js';
 
 export const app = express();
 
@@ -17,3 +18,4 @@ app.use('/api/search', searchRouter);
 app.use('/api/weather', weatherRouter);
 app.use('/api/traffic', trafficRouter);
 app.use('/api/transport', transportRouter);
+app.use('/api/places', placesRouter);
