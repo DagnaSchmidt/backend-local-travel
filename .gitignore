@@ -7,13 +7,14 @@
 /.pnp
 .pnp.js
 .yarn/install-state.gz
+/server/.env
 
 # testing
 /coverage
 
 # next.js
 /.next/
-/client/.next/
+/client/.next
 /out/
 
 # production
