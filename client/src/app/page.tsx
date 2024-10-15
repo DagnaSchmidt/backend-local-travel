@@ -3,6 +3,7 @@ import Traffic from "../components/traffic/Traffic";
 import Transport from "../components/transport/Transport";
 import Weather from "../components/weather/Weather";
 import Layout from "../components/layout/Layout";
+import Places from "@/components/places/Places";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
         <Transport />
         <Weather />
         <Traffic />
+        <Places />
       </Layout>
     </div>
   );
