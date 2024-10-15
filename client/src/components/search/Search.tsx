@@ -4,6 +4,7 @@ const Search = () => {
     return (
         <div>
             {/* Tasneem SEARCH COMPONENT / USER INPUT */}
+            
         </div>
     );
 };
