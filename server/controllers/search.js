@@ -11,8 +11,8 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 searchRouter.get('/', async (req, res) => {
-    const { address } = req.query;
-   
+     const { address } = req.query;
+    // const  address  = "Helsingborg+C";
     if (!address) {
         return res.status(400).json({ error: 'Address is required' });
     }
