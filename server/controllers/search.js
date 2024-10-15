@@ -10,7 +10,7 @@ import axios from 'axios';
 import dotenv from 'dotenv';
 dotenv.config();
 
-searchRouter.get('/coordinates', async (req, res) => {
+searchRouter.get('/', async (req, res) => {
     const { address } = req.query;
    
     if (!address) {
