@@ -10,10 +10,18 @@ export default function Home() {
     <div>
       <Search />
       <Layout>
-        <Transport />
-        <Weather />
-        <Traffic />
-        <Places />
+        <div
+          className='xl:col-span-5 w-full flex flex-col gap-4'
+        >
+          <Transport />
+          <Weather />
+        </div>
+        <div
+          className='xl:col-span-7 w-full flex flex-col gap-4'
+        >
+          <Traffic />
+          <Places />
+        </div>
       </Layout>
     </div>
   );
