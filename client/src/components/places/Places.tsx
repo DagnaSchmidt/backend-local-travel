@@ -30,7 +30,7 @@ const Places = () => {
                 Places
             </h5>
             <div
-                className='flex flex-col gap-1'
+                className='flex flex-col gap-1 xl:grid xl:grid-cols-2 xl:gap-x-4'
             >
                 {places?.map((i: TPlaceItemProps) => <PlaceItem key={i.id} {...i} />)}
             </div>
