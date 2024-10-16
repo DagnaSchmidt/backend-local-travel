@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import PlaceItem from './PlaceItem';
 import { setPlaces } from '@/store/places/placesSlice';
 import { useAppDispatch, useAppSelector } from '@/store/store';
+import { TPlaceItemProps } from './PlaceItem';
 
 
 const Places = () => {
@@ -31,7 +32,7 @@ const Places = () => {
             <div
                 className='flex flex-col gap-1'
             >
-                {places?.map(i => <PlaceItem key={i.id} {...i} />)}
+                {places?.map((i: TPlaceItemProps) => <PlaceItem key={i.id} {...i} />)}
             </div>
         </div>
     );
