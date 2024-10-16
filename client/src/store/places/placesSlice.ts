@@ -14,8 +14,8 @@ const placesSlice = createSlice({
 });
 
 type TLocalizationProps = {
-    lon: string,
-    lat: string
+    lon: number,
+    lat: number
 };
 
 export const setPlaces = (data: TLocalizationProps) => {
