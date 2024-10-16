@@ -3,7 +3,7 @@ import PlaceIcon from './PlaceIcon';
 
 type TAmenityType = 'cafe' | 'restaurant' | 'bar';
 
-interface IPlaceItemProps {
+export type TPlaceItemProps = {
     lat: number,
     lon: number,
     id: number,
@@ -20,7 +20,7 @@ const PlaceItem = ({
     lon,
     id,
     tags
-}: IPlaceItemProps): ReactElement => {
+}: TPlaceItemProps): ReactElement => {
 
     const distance = 90; // hook here
     const icon = tags?.amenity === 'cafe' ? 'coffee' : tags?.amenity === 'bar' ? 'martini' : 'chef-hat';
