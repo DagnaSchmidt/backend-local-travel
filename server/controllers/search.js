@@ -26,13 +26,15 @@ searchRouter.get('/', async (req, res) => {
             },
         });
 
-        if (response.data.status === 'OK') {
-            const location = response.data.results[0].geometry.location;
-            res.json(location);
-        } else {
-            res.status(404).json({ error: 'Address not found' });
-        }
+        // if (response.data.status === 'OK') {
+        //     const location = response.data.results[0].geometry.location;
+        //     res.json(location);
+        // } else {
+        //     res.status(404).json({ error: 'Address not found' });
+        // }
+        res.json(response.data.results);
     } catch (error) {
+        console.error('Error fetching address suggestions:', error);
         res.status(500).json({ error: 'Server error' });
     }
 });

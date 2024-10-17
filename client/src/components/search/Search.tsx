@@ -1,11 +1,14 @@
+"use client";
 import axios from "axios";
 import React, { useState, ChangeEvent } from "react";
 import { SearchCheck } from "lucide-react";
 
+
+
 interface searchInput {
   lat: number;
-
   lng: number;
+
 }
 
 const Search = () => {
@@ -16,6 +19,11 @@ const Search = () => {
   const handleAddressChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value);
   };
+  
+  const backendUrl = process.env.REACT_APP_BACKEND_URL;
+  console.log('Backend URL:', backendUrl);
+  console.log('Test Variable:', process.env.REACT_APP_TEST_VAR);
+
 
   const handlesearchbutton = async (
     e: React.KeyboardEvent<HTMLInputElement>
@@ -23,7 +31,8 @@ const Search = () => {
     if (e.key === "Enter")
       try {
         const response = await axios.get<searchInput>(
-          `${process.env.REACT_APP_BACKEND_URL}/api/search`,
+          // `${process.env.REACT_APP_BACKEND_URL}`,
+           `http://localhost:8000/api/search`,
           {
             params: { address },
           }
