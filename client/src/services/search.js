@@ -5,7 +5,7 @@ import axios from "axios";
 
 
 
-export const getLocation = async (address) => {
+/*export const getLocation = async (address) => {
 
     try {
         //  const respones = await await axios.get(`${process.env.REACT_APP_BACKEND_URL}`,{
@@ -21,4 +21,4 @@ export const getLocation = async (address) => {
 
    
 
-}
+}*/

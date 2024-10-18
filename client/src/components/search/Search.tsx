@@ -5,7 +5,7 @@ import { SearchCheck } from "lucide-react";
 
 
 
-interface searchInput {
+/*interface searchInput {
   lat: number;
   lng: number;
 
@@ -81,5 +81,59 @@ const Search = () => {
     </div>
   );
 };
+
+export default Search;*/
+
+
+const Search: React.FC = () => {
+    const [input, setInput] = useState('');
+    const [suggestions, setSuggestions] = useState<string[]>([]);
+
+    const fetchSuggestions = async () => {
+        if (input) {
+            try {
+                const response = await axios.get(`http://localhost:8000/api/search`, {
+                    params: { input }
+                });
+                setSuggestions(response.data.predictions.map((prediction: any) => prediction.description));
+            } catch (error) {
+                console.error('Error fetching suggestions', error);
+                console.log(suggestions);
+                
+            }
+        } else {
+            setSuggestions([]);
+        }
+    };
+
+    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInput(e.target.value);
+        fetchSuggestions();
+        console.log(input);
+        
+    };
+
+    return (
+        <div>
+            <h1>Address Auto-Suggestion</h1>
+            <input
+                type="text"
+                value={input}
+                onChange={handleInputChange}
+                placeholder="Type an address..."
+            />
+            <ul>
+                {suggestions.map((suggestion, index) => (
+                    <li key={index}>{suggestion}</li>
+                ))}
+            </ul>
+        </div>
+    );
+};
+
+
+  
+
+
 
 export default Search;
