@@ -19,10 +19,6 @@ const Search = () => {
   const handleAddressChange = (e: ChangeEvent<HTMLInputElement>) => {
     setAddress(e.target.value);
   };
-  
-  const backendUrl = process.env.REACT_APP_BACKEND_URL;
-  console.log('Backend URL:', backendUrl);
-  console.log('Test Variable:', process.env.REACT_APP_TEST_VAR);
 
 
   const handlesearchbutton = async (
@@ -47,7 +43,7 @@ const Search = () => {
 
   return (
     <div>
-      {/* Tasneem SEARCH COMPONENT / USER INPUT */}
+     
 
       <div>
         <h3> welcome to the Local Travel and weather Dashboard</h3>
@@ -68,8 +64,8 @@ const Search = () => {
             required
           />
           <span className="absolute top-2 right-3 text-gray-400">
-            {" "}
-            <SearchCheck />{" "}
+            
+            <SearchCheck />
           </span>
         </div>
         {searchInput &&
