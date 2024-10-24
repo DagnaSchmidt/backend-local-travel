@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import React, { useState, ChangeEvent } from "react";
-import { MapPin } from "lucide-react";
+import { MapPin,LocateFixed,Cloud,TrainFront ,MapPinned} from "lucide-react";
 
 const Search: React.FC = () => {
   const [input, setInput] = useState("");
@@ -64,12 +64,18 @@ const Search: React.FC = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+      <div className="flex flex-row  space-x-6  p-4">
+      <LocateFixed size={32} />
+      <Cloud  size={32}/>
+      <TrainFront  size={32}/>
+       <MapPinned  size={32} />
+      </div>
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
         Local Travel & Weather Dashboard
       </h1>
       <p className="font-semibold mb-4">
         Enter your address to see public transport Depatures ,Local weather ,and
-        traffic incidents{" "}
+        traffic incidents
       </p>
 
       <div className="w-full max-w-md relative">
