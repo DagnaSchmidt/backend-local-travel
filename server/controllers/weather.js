@@ -1,12 +1,7 @@
 import express from "express";
 import axios from "axios";
-import cors from "cors";
 
-const app = express();
-const port = 3001;
-
-app.use(cors()); // Allow requests from the frontend
-app.use(express.json()); // Middleware to parse JSON bodies
+export const weatherRouter = express.Router();
 
 // OpenWeather API details
 const apiKey = "d0cdedf311595e6787a701b38eb9b472";
@@ -20,11 +15,10 @@ const getWeatherData = async (latitude, longitude) => {
         lat: latitude,
         lon: longitude,
         appid: apiKey,
-        units: "metric", // Convert temperature to Celsius
+        units: "metric",
       },
     });
 
-    // Filter and format data for 5-day forecast at 12:00 PM
     const weatherData = response.data.list
       .filter((item) => item.dt_txt.includes("12:00:00"))
       .slice(0, 5)
@@ -34,7 +28,7 @@ const getWeatherData = async (latitude, longitude) => {
         }),
         temp: item.main.temp,
         humidity: item.main.humidity,
-        weatherIcon: "https://openweathermap.org/img/wn/${item.weather[0].icon}.png",
+        weatherIcon: `https://openweathermap.org/img/wn/${item.weather[0].icon}.png`,
       }));
 
     return weatherData;
@@ -44,8 +38,8 @@ const getWeatherData = async (latitude, longitude) => {
   }
 };
 
-// POST route to handle location and return weather data
-app.post("/weather", async (req, res) => {
+// Route to handle weather data requests
+weatherRouter.post("/", async (req, res) => {
   const { latitude, longitude } = req.body;
 
   try {
@@ -54,9 +48,4 @@ app.post("/weather", async (req, res) => {
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch weather data" });
   }
-});
-
-// Start the server
-app.listen(port, () => {
-  console.log("Server running on http://localhost:${port}");
 });

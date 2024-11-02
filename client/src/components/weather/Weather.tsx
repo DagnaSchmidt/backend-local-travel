@@ -1,6 +1,7 @@
 "use client";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { useAppSelector } from "@/store/store";
 
 // TypeScript types for weather data
 interface WeatherData {
@@ -12,15 +13,22 @@ interface WeatherData {
 
 const Weather: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
-  const [latitude, setLatitude] = useState<string>("");
-  const [longitude, setLongitude] = useState<string>("");
+  
+  // Localization state from search reducer
+  const localization = useAppSelector((state) => state.search);
+
+  useEffect(() => {
+    if (localization.lat && localization.lon) {
+      fetchWeatherData(localization.lat, localization.lon);
+    }
+  }, [localization]);
 
   // Function to fetch weather data from backend
-  const fetchWeatherData = async () => {
+  const fetchWeatherData = async (latitude: number, longitude: number) => {
     try {
-      const response = await axios.post("http://localhost:3001/weather", {
-        latitude: parseFloat(latitude),
-        longitude: parseFloat(longitude),
+      const response = await axios.post("http://localhost:3002/api/weather", {
+        latitude,
+        longitude,
       });
 
       setWeatherData(response.data.weatherData);
@@ -32,21 +40,6 @@ const Weather: React.FC = () => {
   return (
     <div>
       <h2>Weather Forecast</h2>
-      <div>
-        <input
-          type="text"
-          placeholder="Enter latitude"
-          value={latitude}
-          onChange={(e) => setLatitude(e.target.value)}
-        />
-        <input
-          type="text"
-          placeholder="Enter longitude"
-          value={longitude}
-          onChange={(e) => setLongitude(e.target.value)}
-        />
-        <button onClick={fetchWeatherData}>Get Weather</button>
-      </div>
       <table>
         <thead>
           <tr>
@@ -73,4 +66,4 @@ const Weather: React.FC = () => {
   );
 };
 
-export default Weather;
+export default Weather;
