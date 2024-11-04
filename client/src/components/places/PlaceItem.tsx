@@ -1,5 +1,6 @@
 import React, { ReactElement } from 'react';
 import PlaceIcon from './PlaceIcon';
+import { useCountDistance } from '@/hooks/useCountDistance';
 
 type TAmenityType = 'cafe' | 'restaurant' | 'bar';
 
@@ -22,7 +23,7 @@ const PlaceItem = ({
     tags
 }: TPlaceItemProps): ReactElement => {
 
-    const distance = 90; // hook here
+    const distance = useCountDistance({ lat, lon });
     const icon = tags?.amenity === 'cafe' ? 'coffee' : tags?.amenity === 'bar' ? 'martini' : 'chef-hat';
 
     return (

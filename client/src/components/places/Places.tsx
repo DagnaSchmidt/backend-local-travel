@@ -1,20 +1,15 @@
 'use client'
-import React, { useEffect } from 'react';
+import React, { ReactElement, useEffect } from 'react';
 import PlaceItem from './PlaceItem';
 import { setPlaces } from '@/store/places/placesSlice';
 import { useAppDispatch, useAppSelector } from '@/store/store';
 import { TPlaceItemProps } from './PlaceItem';
 
 
-const Places = () => {
+const Places = (): ReactElement => {
     const dispatch = useAppDispatch();
     const places = useAppSelector((state) => state.places);
-
-    // hard coded localization, update later
-    const localization = {
-        "lon": "12.4910693",
-        "lat": "41.8949549"
-    };
+    const localization = useAppSelector((state) => state.search);
 
     useEffect(() => {
         dispatch(setPlaces(localization));
