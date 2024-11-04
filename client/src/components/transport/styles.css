@@ -1,0 +1,75 @@
+/* frontend/src/styles.css */
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    background-color: #f4f4f9;
+  }
+  
+  .app {
+    text-align: center;
+    padding: 20px;
+    max-width: 600px;
+    width: 100%;
+  }
+  
+  h1 {
+    color: #333;
+  }
+  
+  button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    margin-top: 10px;
+  }
+  
+  button:disabled {
+    background-color: #cccccc;
+    cursor: not-allowed;
+  }
+  
+  .error {
+    color: red;
+    margin-top: 10px;
+  }
+  
+  .departures {
+    margin-top: 20px;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+  
+  .departure-card {
+    padding: 15px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background-color: white;
+    text-align: left;
+  }
+  
+  .departure-card .icon {
+    font-size: 24px;
+    margin-bottom: 8px;
+  }
+  
+  .departure-card h3 {
+    margin: 0;
+    color: #333;
+  }
+  
+  .departure-card p {
+    margin: 5px 0;
+    color: #555;
+  }
+  
