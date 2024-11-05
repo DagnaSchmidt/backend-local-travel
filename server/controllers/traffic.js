@@ -3,11 +3,11 @@ import axios from 'axios';
 
 const trafficRouter = express.Router();
 
-// Replace with your API key from environment variables
+
 const API_KEY = "ab6c9b35949b452eb688d80d9dd81817";
 const API_URL = "https://api.trafikinfo.trafikverket.se/v2/data.json";
 
-// Define the XML data
+
 const xmlData = `
 <REQUEST>
   <LOGIN authenticationkey="${API_KEY}"/>
@@ -30,7 +30,6 @@ trafficRouter.get('/fetch-data', (req, res) => {
       res.json(response.data);
     })
     .catch(error => {
-      // Log detailed error information
       console.error("Request failed:", error.response ? error.response.data : error.message);
       res.status(500).json({
         message: "Failed to fetch data",
