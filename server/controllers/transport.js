@@ -1,6 +1,76 @@
-import express from 'express';
+// transportRouter.js
 
-export const transportRouter = express.Router();
+import express from "express";
+import axios from "axios";
+import cors from "cors";
+import dotenv from "dotenv";
+dotenv.config();
+const app = express();
+const PORT = 3005;
+
+app.use(cors());
+app.use(express.json());
+
+//export const transportRouter = express.Router();
+
+const apiKey = process.env.TRAFIKVERKET_API_KEY;
+const stationsProximityApiUrl = `https://api.resrobot.se/v2.1/location.nearbystops`;
+const departureBoardApiUrl = `https://api.resrobot.se/v2.1/departureBoard`;
+
+const getNearestStationId = async (latitude, longitude) => {
+  try {
+    const response = await axios.get(stationsProximityApiUrl, {
+      params: {
+        originCoordLat: latitude,
+        originCoordLong: longitude,
+        format: "json",
+        accessId: apiKey,
+      },
+    });
+    const nearestStation = response.data.stopLocationOrCoordLocation[0].StopLocation;
+    return nearestStation.id;
+  } catch (error) {
+    console.error("Error fetching nearest station:", error);
+    throw error;
+  }
+};
+
+const getDepartureBoard = async (stationId) => {
+  try {
+    const response = await axios.get(departureBoardApiUrl, {
+      params: {
+        id: stationId,
+        format: "json",
+        accessId: apiKey,
+      },
+    });
+    const departures = response.data.Departure.slice(0, 5); 
+    return departures;
+  } catch (error) {
+    console.error("Error fetching departure board:", error);
+    throw error;
+  }
+};
+
+app.post("/location", async (req, res) => {
+  const { latitude, longitude } = req.body;
+  //console.log(req.body)
+
+  try {
+    const stationId = await getNearestStationId(latitude, longitude);
+    if (stationId) {
+      const departures = await getDepartureBoard(stationId);
+      res.json({ departures });
+    } else {
+      res.status(400).json({ error: "No station found near the location." });
+    }
+  } catch (error) {
+    res.status(500).json({ error: "Server error" });
+  }
+});
+app.listen(PORT, () => {
+  console.log(`Server is running in PORT ${PORT}`);
+});
 
 // Ripandeep
 // all http requests here
