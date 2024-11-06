@@ -38,25 +38,29 @@ const Weather: React.FC = () => {
   };
 
   return (
-    <div>
-      <h2>Weather Forecast</h2>
-      <table>
+    <div style={{ maxWidth: "600px", margin: "auto", fontFamily: "Arial, sans-serif" }}>
+      <h2 style={{ textAlign: "center", color: "#333", marginBottom: "20px" }}>Weather Forecast</h2>
+      <table style={{
+        width: "100%",
+        borderCollapse: "collapse",
+        boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"
+      }}>
         <thead>
-          <tr>
-            <th>Day</th>
-            <th>Temp °C</th>
-            <th>Humidity %</th>
-            <th>Weather</th>
+          <tr style={{ backgroundColor: "#555", color: "white", textAlign: "center" }}>
+            <th style={{ padding: "12px" }}>Day</th>
+            <th style={{ padding: "12px" }}>Temp °C</th>
+            <th style={{ padding: "12px" }}>Humidity %</th>
+            <th style={{ padding: "12px" }}>Weather</th>
           </tr>
         </thead>
         <tbody>
           {weatherData.map((day, index) => (
-            <tr key={index}>
-              <td>{day.date}</td>
-              <td>{day.temp.toFixed(1)}</td>
-              <td>{day.humidity}%</td>
-              <td>
-                <img src={day.weatherIcon} alt="weather icon" />
+            <tr key={index} style={{ backgroundColor: index % 2 === 0 ? "#f0f0f0" : "#e0e0e0" }}>
+              <td style={{ padding: "10px", textAlign: "center", borderBottom: "1px solid #ccc", color: "#333" }}>{day.date}</td>
+              <td style={{ padding: "10px", textAlign: "center", borderBottom: "1px solid #ccc", color: "#333" }}>{day.temp.toFixed(1)}°C</td>
+              <td style={{ padding: "10px", textAlign: "center", borderBottom: "1px solid #ccc", color: "#333" }}>{day.humidity}%</td>
+              <td style={{ padding: "10px", textAlign: "center", borderBottom: "1px solid #ccc" }}>
+                <img src={day.weatherIcon} alt="weather icon" style={{ width: "30px", height: "30px" }} />
               </td>
             </tr>
           ))}
