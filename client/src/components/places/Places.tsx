@@ -13,7 +13,7 @@ const Places = (): ReactElement => {
 
     useEffect(() => {
         dispatch(setPlaces(localization));
-    }, []);
+    }, [localization]);
 
     return (
         <div

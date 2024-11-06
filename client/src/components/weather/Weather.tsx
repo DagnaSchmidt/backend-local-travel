@@ -13,7 +13,7 @@ interface WeatherData {
 
 const Weather: React.FC = () => {
   const [weatherData, setWeatherData] = useState<WeatherData[]>([]);
-  
+
   // Localization state from search reducer
   const localization = useAppSelector((state) => state.search);
 
@@ -26,7 +26,7 @@ const Weather: React.FC = () => {
   // Function to fetch weather data from backend
   const fetchWeatherData = async (latitude: number, longitude: number) => {
     try {
-      const response = await axios.post("http://localhost:3002/api/weather", {
+      const response = await axios.post("http://localhost:8000/api/weather", {
         latitude,
         longitude,
       });
