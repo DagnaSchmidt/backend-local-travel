@@ -3,7 +3,8 @@
 import express from "express";
 import axios from "axios";
 import cors from "cors";
-
+import dotenv from "dotenv";
+dotenv.config();
 const app = express();
 const PORT = 3005;
 
@@ -12,7 +13,7 @@ app.use(express.json());
 
 //export const transportRouter = express.Router();
 
-const apiKey = "d28406c2-72a7-42a9-8a3c-183a11a8f46c";
+const apiKey = process.env.TRAFIKVERKET_API_KEY;
 const stationsProximityApiUrl = `https://api.resrobot.se/v2.1/location.nearbystops`;
 const departureBoardApiUrl = `https://api.resrobot.se/v2.1/departureBoard`;
 
