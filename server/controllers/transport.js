@@ -2,13 +2,15 @@
 
 import express from "express";
 import axios from "axios";
-
 import cors from "cors";
-export const transportRouter = express.Router();
 
 const app = express();
+const PORT = 3005;
+
 app.use(cors());
 app.use(express.json());
+
+//export const transportRouter = express.Router();
 
 const apiKey = "d28406c2-72a7-42a9-8a3c-183a11a8f46c";
 const stationsProximityApiUrl = `https://api.resrobot.se/v2.1/location.nearbystops`;
@@ -51,7 +53,7 @@ const getDepartureBoard = async (stationId) => {
 
 app.post("/location", async (req, res) => {
   const { latitude, longitude } = req.body;
-  console.log(req.body)
+  //console.log(req.body)
 
   try {
     const stationId = await getNearestStationId(latitude, longitude);
@@ -65,7 +67,9 @@ app.post("/location", async (req, res) => {
     res.status(500).json({ error: "Server error" });
   }
 });
-
+app.listen(PORT, () => {
+  console.log(`Server is running in PORT ${PORT}`);
+});
 
 // Ripandeep
 // all http requests here
