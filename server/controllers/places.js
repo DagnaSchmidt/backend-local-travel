@@ -6,10 +6,6 @@ placesRouter.post('/', async (req, res) => {
     const lat = req.body.lat;
     const lon = req.body.lon;
 
-    console.log(req);
-    console.log(req.body);
-    console.log(req.body.lat);
-
     const overpassUrl = `https://overpass-api.de/api/interpreter?data=[out:json];
         node["amenity"~"cafe|restaurant|bar"](around:100,${lat},${lon});
         out body;`;

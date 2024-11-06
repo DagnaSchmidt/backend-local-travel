@@ -1,9 +1,12 @@
 "use client";
 import axios from "axios";
 import React, { useState, ChangeEvent } from "react";
-import { MapPin,LocateFixed,Cloud,TrainFront ,MapPinned} from "lucide-react";
+import { MapPin, LocateFixed, Cloud, TrainFront, MapPinned } from "lucide-react";
+import { useAppDispatch } from '@/store/store';
+import { setReducerSearch } from "@/store/search/searchSlice";
 
 const Search: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [input, setInput] = useState("");
   const [suggestions, setSuggestions] = useState<string[]>([]);
   const [selectedLocation, setSelectedLocation] = useState<{
@@ -55,6 +58,10 @@ const Search: React.FC = () => {
           lat: location.lat,
           lng: location.lng,
         });
+        dispatch(setReducerSearch({
+          lon: location.lng,
+          lat: location.lat
+        }));
         setSuggestions([]);
       }
     } catch (error) {
@@ -63,12 +70,12 @@ const Search: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100 p-4">
+    <div className="flex flex-col items-center justify-center bg-gray-100 p-4">
       <div className="flex flex-row  space-x-6  p-4">
-      <LocateFixed size={32} />
-      <Cloud  size={32}/>
-      <TrainFront  size={32}/>
-       <MapPinned  size={32} />
+        <LocateFixed size={32} />
+        <Cloud size={32} />
+        <TrainFront size={32} />
+        <MapPinned size={32} />
       </div>
       <h1 className="text-3xl font-bold mb-6 text-gray-800">
         Local Travel & Weather Dashboard
