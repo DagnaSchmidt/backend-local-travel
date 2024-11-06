@@ -9,7 +9,6 @@ import { TPlaceItemProps } from './PlaceItem';
 const Places = (): ReactElement => {
     const dispatch = useAppDispatch();
     const places = useAppSelector((state) => state.places);
-    console.log(places);
     const localization = useAppSelector((state) => state.search);
 
     useEffect(() => {
