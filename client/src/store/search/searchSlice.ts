@@ -8,9 +8,12 @@ const searchSlice = createSlice({
         lat: 41.8949549
     },
     reducers: {
-
+        setReducerSearch(state, action) {
+            const newState = action.payload;
+            return newState;
+        }
     }
 });
 
-export const { } = searchSlice.actions;
+export const { setReducerSearch } = searchSlice.actions;
 export default searchSlice.reducer;
